@@ -32,7 +32,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
-		<title>Расписания группы 21К</title> 
+		<title>Расписания группы 21К</title>
+		<meta name='original-source' content='https://github.com/ReaGed/DVGUPS/blob/master/timetable/21k.php'>
 	</head>
 	<body>
 	Расписание автоматически обновляется. В "живом режиме" берется с сайта ДВГУПС.<br><br>
