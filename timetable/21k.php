@@ -1,4 +1,5 @@
 <?php
+date_default_timezone_set("Asia/Vladivostok");
   if( $curl1 = curl_init() ) {
     curl_setopt($curl1, CURLOPT_URL, 'http://dvgups.ru/timetables?view=ringtable&amp;option=com_timetable');
     curl_setopt($curl1, CURLOPT_RETURNTRANSFER,true);
@@ -32,11 +33,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
-		<title>Расписания группы 21К</title>
+		<title>Расписания группы 21К</title> 
 		<meta name='original-source' content='https://github.com/ReaGed/DVGUPS/blob/master/timetable/21k.php'>
 	</head>
 	<body>
-	Расписание автоматически обновляется. В "живом режиме" берется с сайта ДВГУПС.<br><br>
+	Расписание автоматически обновляется. В "живом режиме" берется с сайта ДВГУПС.<br>
+	Текущая неделя: <b><? echo ((strftime("%V") % 2) == 0) ? 'Числитель' : 'Знаменатель'; ?></b><br><br>
 		<details>
 		<summary>Расписание звонков</summary>
 		<? echo (isset($zam1['0'])) ? $zam1['0'] : 'Ашипка'; ?>
