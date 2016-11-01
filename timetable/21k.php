@@ -1,34 +1,13 @@
 <?php
 date_default_timezone_set("Asia/Vladivostok");
-  if( $curl1 = curl_init() ) {
-    curl_setopt($curl1, CURLOPT_URL, 'http://dvgups.ru/timetables?view=ringtable&amp;option=com_timetable');
-    curl_setopt($curl1, CURLOPT_RETURNTRANSFER,true);
-    curl_setopt($curl1, CURLOPT_POST, false);
-    $out1 = curl_exec($curl1);
-	preg_match('/<table width="400" border="1" cellspacing="0" cellpadding="0">(.*)<\/table>/s', $out1,$zam1);
-	curl_close($curl1);
-  }
-
-  if( $curl2 = curl_init() ) {
-    curl_setopt($curl2, CURLOPT_URL, 'http://dvgups.ru/timetables?view=timetable&option=com_timetable');
-    curl_setopt($curl2, CURLOPT_RETURNTRANSFER,true);
-    curl_setopt($curl2, CURLOPT_POST, true);
-    curl_setopt($curl2, CURLOPT_POSTFIELDS, "sel1=ИУАТ&sel2=21К.TXT&selector=grp");
-    $out2 = curl_exec($curl2);
-	preg_match('/<pre>(.*)<\/pre>/s', $out2,$zam2);
-	curl_close($curl2);
-  }
+  $out1 = file_get_contents('http://dvgups.ru/index.php?Itemid=1246&option=com_timetable&view=ringtable');
+  preg_match('/<table width="400" border="1" cellspacing="0" cellpadding="0">(.*)<\/table>\r\n<p>/s', $out1,$zam1);
   
-    if( $curl3 = curl_init() ) {
-    curl_setopt($curl3, CURLOPT_URL, 'http://dvgups.ru/timetables?view=examtable&option=com_timetable');
-    curl_setopt($curl3, CURLOPT_RETURNTRANSFER,true);
-    curl_setopt($curl3, CURLOPT_POST, true);
-    curl_setopt($curl3, CURLOPT_POSTFIELDS, "sel1=ИУАТ&sel2=21К.TXT&selector=grp");
-    $out3 = curl_exec($curl3);
-	preg_match('/<pre>(.*)<\/pre>/s', $out3,$zam3);
-	curl_close($curl3);
-  }
-
+  $out2 = file_get_contents('http://dvgups.ru/studtopmenu/study/timetables?view=timetable&tmpl=component&selector=grp&sel1=%D0%98%D0%A3%D0%90%D0%A2&sel2=21%D0%9A.TXT');
+  preg_match('/<pre(.*)<\/pre>/s', $out2,$zam2);
+  
+  $out3 = file_get_contents('http://dvgups.ru/studtopmenu/study/timetables?view=examtable&tmpl=component&selector=grp&sel1=%D0%98%D0%A3%D0%90%D0%A2&sel2=21%D0%9A.TXT&no_html=1&print=1&layout=default');
+  preg_match('/<pre(.*)<\/pre>/s', $out3,$zam3);
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
